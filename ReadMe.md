@@ -1,3 +1,18 @@
+_Jan Haller's original lib has been archived. This is a copy kept alive against the still developing SFML._
+
+_Compiles cleanly against the **2.6.x** branch of [SFML](https://github.com/SFML/SFML/tree/2.6.x), e.g. with the script below._
+_(No CMake is actually needed whatsoever; just as usual.)_
+
+    set SFML=C:/SW/devel/lib/sfml/2.6.x
+    set THOR=%~dp0
+    set INCLUDE=%THOR%/include;%THOR%/extlibs/aurora/include;%SFML%/include;%INCLUDE%
+    
+    md out    
+    cl -W4 -DSFML_STATIC -O2 -std:c++20 -MD -EHsc -Foout/ -c modules=src/*.cpp
+    if errorlevel 1 goto :eof
+    lib -name:thor.lib out/*.obj
+-------------------------------------------------------------------------------------------------    
+    
 ![Thor C++ Library](http://www.bromeon.ch/libraries/thor/thor.png)
 
 # Thor C++ Library
