@@ -8,7 +8,7 @@ _(No CMake is actually needed whatsoever; just as usual.)_
     set INCLUDE=%THOR%/include;%THOR%/extlibs/aurora/include;%SFML%/include;%INCLUDE%
     
     md out    
-    cl -W4 -DSFML_STATIC -O2 -std:c++20 -MD -EHsc -Foout/ -c modules=src/*.cpp
+    cl -W4 -DSFML_STATIC -O2 -std:c++20 -MD -EHsc -Foout/ -c src/*.cpp
     if errorlevel 1 goto :eof
     lib -name:thor.lib out/*.obj
 -------------------------------------------------------------------------------------------------    
