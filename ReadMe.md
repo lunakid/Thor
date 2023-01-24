@@ -10,7 +10,8 @@ _(No CMake is actually needed whatsoever; just as usual.)_
     md out    
     cl -W4 -DSFML_STATIC -O2 -std:c++20 -MD -EHsc -Foout/ -c src/*.cpp
     if errorlevel 1 goto :eof
-    lib -name:thor.lib out/*.obj
+    lib -out:out/thor.lib out/*.obj
+
 -------------------------------------------------------------------------------------------------    
     
 ![Thor C++ Library](http://www.bromeon.ch/libraries/thor/thor.png)
