@@ -126,7 +126,7 @@ class THOR_API Arrow : public sf::Drawable, public sf::Transformable
 		float						getTriangleHeight() const;
 		void						adaptLine() const;
 		void						adaptTriangle() const;
-		void						draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		void				                draw(sf::RenderTarget& target, const sf::RenderStates& states) const override;
 
 
 	// ---------------------------------------------------------------------------------------------------------------------------

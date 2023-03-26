@@ -31,7 +31,7 @@
 
 #include <Thor/Config.hpp>
 
-#include <SFML/System/NonCopyable.hpp>
+#include <_shim_/SFML/System/NonCopyable.hpp>
 
 #include <memory>
 

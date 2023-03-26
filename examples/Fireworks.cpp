@@ -12,7 +12,7 @@
 const sf::Time	explosionInterval	= sf::seconds(1.f);
 const sf::Time	explosionDuration	= sf::seconds(0.2f);
 const sf::Time	tailDuration		= sf::seconds(2.5f);
-const sf::Int64	tailsPerExplosion	= 15;
+const int64_t	tailsPerExplosion	= 15;
 const float		gravity				= 30.f;
 
 // Array with possible colors for explosions
@@ -67,7 +67,7 @@ class FireworkEmitter
 
 			// A tail contains 25 particles with different speeds and scales.
 			// The largest particles move fastest, leading to a comet-like tail effect.
-			for (sf::Int64 i = 0; i < 25; ++i)
+			for (int64_t i = 0; i < 25; ++i)
 			{
 				// Decrease scale continuously
 				particle.scale *= 0.95f;
@@ -97,14 +97,14 @@ class FireworkAffector
 			particle.velocity += dt.asSeconds() * sf::Vector2f(0.f, gravity) * particle.scale.x * particle.scale.y;
 
 			// Let particles continuously fade out (particles with smaller scale have already lower alpha value at beginning)
-			particle.color.a = static_cast<sf::Uint8>(256 * thor::getRemainingRatio(particle) * particle.scale.x);
+			particle.color.a = static_cast<uint8_t>(256 * thor::getRemainingRatio(particle) * particle.scale.x);
 		}
 };
 
 int main()
 {
 	// Create render window
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Thor Fireworks", sf::Style::Close);
+	sf::RenderWindow window(sf::VideoMode({800, 600}), "Thor Fireworks", sf::Style::Close);
 	window.setVerticalSyncEnabled(true);
 
 	// Load texture

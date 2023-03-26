@@ -50,45 +50,45 @@ namespace
 	{
 		public:
 			// Type definition for usage inside Std.Random
-			typedef sf::Uint32 result_type;
+			typedef uint32_t result_type;
 
 
 		public:
 			// Constructor
-			explicit Engine(sf::Uint32 seedVal)
+			explicit Engine(result_type seedVal)
 			{
 				seed(seedVal);
 			}
 
 			// Return random number
-			sf::Uint32 operator() ()
+			result_type operator() ()
 			{
-				const sf::Uint64 a = 1967773755;
+				const uint64_t a = 1967773755;
 
 				x = a * (x & 0xffffffff) + (x >> 32);
-				return static_cast<sf::Uint32>(x);
+				return static_cast<result_type>(x);
 			}
 
 			// set seed (compliant to Std.Random)
-			void seed(sf::Uint32 seedVal = 0)
+			void seed(result_type seedVal = 0)
 			{
 				x = seedVal + !seedVal;
 			}
 
 			// Return minimal value (compliant to Std.Random)
-			static constexpr sf::Uint32 min()
+			static constexpr result_type min()
 			{
 				return 0;
 			}
 
 			// Return maximal value (compliant to Std.Random)
-			static constexpr sf::Uint32 max()
+			static constexpr result_type max()
 			{
 				return 0xffffffff;
 			}
 
 		private:
-			sf::Uint64 x;
+			uint64_t x;
 	};
 
 #endif // THOR_USE_STD_RANDOMENGINE
@@ -96,7 +96,8 @@ namespace
 	// Function initializing the engine and its seed at startup time
 	Engine createInitialEngine()
 	{
-		return Engine( static_cast<unsigned long>(std::time(nullptr)) );
+		// 
+		return Engine( (Engine::result_type)static_cast<unsigned long>(std::time(nullptr)) );
 	}
 
 	// Pseudo random number generator engine
@@ -136,7 +137,7 @@ float randomDev(float middle, float deviation)
 
 void setRandomSeed(unsigned long seed)
 {
-	globalEngine.seed(seed);
+	globalEngine.seed((Engine::result_type)seed);
 }
 
 } // namespace thor

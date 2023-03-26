@@ -87,7 +87,7 @@ bool BigTexture::loadFromImage(const sf::Image& source)
 		{
 			// Note: sf::Texture::loadFromImage() reduces the rectangle size if necessary
 			tmp.mTextures.push_back(sf::Texture());
-			if (!tmp.mTextures.back().loadFromImage(source, sf::IntRect(x, y, maxSize, maxSize)))
+			if (!tmp.mTextures.back().loadFromImage(source, sf::IntRect(sf::Vector2i(x, y), sf::Vector2i(maxSize, maxSize))))
 				return false;
 		}
 	}
@@ -164,7 +164,7 @@ sf::Vector2f BigTexture::fillSprites(const sf::Color& color, std::vector<sf::Spr
 
 			sprite.setColor(color);
 			sprite.setTexture(texture);
-			sprite.setPosition(static_cast<float>(i * maxSize), static_cast<float>(j * maxSize));
+			sprite.setPosition(sf::Vector2f(static_cast<float>(i * maxSize), static_cast<float>(j * maxSize)));
 		}
 	}
 

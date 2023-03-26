@@ -6,7 +6,7 @@
 int main()
 {
 	// Create render window
-	sf::RenderWindow window(sf::VideoMode(600, 500), "Thor Shapes", sf::Style::Close);
+	sf::RenderWindow window(sf::VideoMode({600, 500}), "Thor Shapes", sf::Style::Close);
 	window.setVerticalSyncEnabled(true);
 	
 	// Create a concave shape by directly inserting the polygon points
@@ -24,7 +24,7 @@ int main()
 	// Create thor::ConcaveShape shape from sf::Shape
 	thor::ConcaveShape circle = sf::CircleShape(60.f);
 	circle.setFillColor(sf::Color(0, 200, 0));	
-	circle.setPosition(40.f, 340.f);
+	circle.setPosition({40.f, 340.f});
 
 	// Create a few predefined shapes
 	sf::ConvexShape polygon = thor::Shapes::polygon(7, 60.f, sf::Color::Transparent, 3.f, sf::Color(175, 40, 250));
@@ -32,9 +32,9 @@ int main()
 	sf::ConvexShape roundedRect = thor::Shapes::roundedRect(sf::Vector2f(200.f, 100.f), 30.f, sf::Color(200, 190, 120), 3.f, sf::Color(150, 140, 80));
 
 	// Move star and polygon shapes
-	star.move(480.f, 120.f);
-	polygon.move(480.f, 120.f);
-	roundedRect.move(380.f, 350.f);
+	star.move({480.f, 120.f});
+	polygon.move({480.f, 120.f});
+	roundedRect.move({380.f, 350.f});
 
 	// Create clock to measure frame time
 	sf::Clock frameClock;
@@ -56,8 +56,8 @@ int main()
 
 		// Rotate polygon and star
 		const sf::Time elapsed = frameClock.restart();
-		polygon.rotate(20.f * elapsed.asSeconds());
-		star.rotate(45.f * elapsed.asSeconds());
+		polygon.rotate(sf::degrees(20.f * elapsed.asSeconds()));
+		star.rotate(sf::degrees(45.f * elapsed.asSeconds()));
 	
 		// Draw everything
 		window.clear();

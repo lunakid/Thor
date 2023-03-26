@@ -61,12 +61,13 @@ void BigSprite::setTexture(const BigTexture& texture)
 	mSize = texture.fillSprites(mColor, mSplitSprites);
 }
 
-void BigSprite::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void BigSprite::draw(sf::RenderTarget& target, const sf::RenderStates& states) const
 {
-	states.transform *= getTransform();
+	auto lstates = states;
+	lstates.transform *= getTransform();
 
 	AURORA_FOREACH(const sf::Sprite& sprite, mSplitSprites)
-		target.draw(sprite, states);
+		target.draw(sprite, lstates);
 }
 
 void BigSprite::setColor(const sf::Color& color)
@@ -83,7 +84,7 @@ sf::Color BigSprite::getColor() const
 
 sf::FloatRect BigSprite::getLocalBounds() const
 {
-	return sf::FloatRect(0.f, 0.f, mSize.x, mSize.y);
+	return sf::FloatRect(sf::Vector2f(0.f, 0.f), sf::Vector2f(mSize.x, mSize.y));
 }
 
 sf::FloatRect BigSprite::getGlobalBounds() const

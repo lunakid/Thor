@@ -77,9 +77,9 @@ template <class Animated>
 void FadeAnimation::operator() (Animated& target, float progress) const
 {
 	if (progress < mInRatio)
-		setAlpha(target, static_cast<sf::Uint8>(256 * progress / mInRatio));
+		setAlpha(target, static_cast<uint8_t>(256 * progress / mInRatio));
 	else if (progress > 1.f - mOutRatio)
-		setAlpha(target, static_cast<sf::Uint8>(256 * (1.f-progress) / mOutRatio));
+		setAlpha(target, static_cast<uint8_t>(256 * (1.f-progress) / mOutRatio));
 }
 
 } // namespace thor

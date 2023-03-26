@@ -33,7 +33,7 @@ void setColor(T& object, const sf::Color& color)
 }
 
 template <typename T>
-void setAlpha(T& object, sf::Uint8 alpha)
+void setAlpha(T& object, uint8_t alpha)
 {
 	sf::Color color = object.getColor();
 	color.a = alpha;

@@ -1,16 +1,27 @@
-_Jan Haller's original lib has been archived. This is a copy kept alive against the still developing SFML._
+_Jan Haller's lib has been archived. This is a copy kept alive against the still developing SFML (v3)._
 
-_Compiles cleanly against the **2.6.x** branch of [SFML](https://github.com/SFML/SFML/tree/2.6.x), e.g. with the script below._
-_(No CMake is actually needed whatsoever; just as usual.)_
+## Porting to SFML 3:
 
-    set SFML=C:/SW/devel/lib/sfml/2.6.x
-    set THOR=%~dp0
++ The lib compiles cleanly against the master (pre-3.0) branch of [SFML](https://github.com/SFML/SFML/),
+  e.g. with a script like this on Windows:
+
+    ~~~~
+    set SFML=C:/SW/devel/lib/sfml/master
+    set THOR=.
     set INCLUDE=%THOR%/include;%THOR%/extlibs/aurora/include;%SFML%/include;%INCLUDE%
-    
-    md out    
+    md out
     cl -W4 -DSFML_STATIC -O2 -std:c++20 -MD -EHsc -Foout/ -c src/*.cpp
-    if errorlevel 1 goto :eof
     lib -out:out/thor.lib out/*.obj
+    ~~~~
+
++ All the examples compile cleanly, and run. (But not all run correctly yet!)
+
+
+### TODO:
+
+- The Fireworks & Particles examples fail to draw anything (probably due to something being off in ParticleSystem)
+- Makefile for GCC!
+
 
 -------------------------------------------------------------------------------------------------    
     

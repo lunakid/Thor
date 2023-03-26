@@ -57,7 +57,7 @@ namespace
 
 	sf::IntRect getFullRect(const sf::Texture& texture)
 	{
-		return sf::IntRect(0, 0, texture.getSize().x, texture.getSize().y);
+		return sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(texture.getSize().x, texture.getSize().y));
 	}
 
 } // namespace
@@ -71,7 +71,7 @@ ParticleSystem::ParticleSystem()
 , mEmitters()
 , mTexture(nullptr)
 , mTextureRects()
-, mVertices(sf::Quads)
+, mVertices() //!!?? (sf::Quads)   // also: Quads have been removed from SFML
 , mNeedsVertexUpdate(true)
 , mQuads()
 , mNeedsQuadUpdate(true)
@@ -202,7 +202,7 @@ void ParticleSystem::clearParticles()
 	mParticles.clear();
 }
 
-void ParticleSystem::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void ParticleSystem::draw(sf::RenderTarget& target, const sf::RenderStates& states) const
 {
 	// Check cached rectangles
 	if (mNeedsQuadUpdate)
@@ -219,8 +219,9 @@ void ParticleSystem::draw(sf::RenderTarget& target, sf::RenderStates states) con
 	}
 
 	// Draw the vertex array with our texture
-	states.texture = mTexture;
-	target.draw(mVertices, states);
+	auto lstates = states;
+	lstates.texture = mTexture;
+	target.draw(mVertices, lstates);
 }
 
 void ParticleSystem::emitParticle(const Particle& particle)
@@ -246,7 +247,7 @@ void ParticleSystem::computeVertices() const
 	{
 		sf::Transform transform;
 		transform.translate(p.position);
-		transform.rotate(p.rotation);
+		transform.rotate(sf::degrees(p.rotation)); //!!?? Or radians()?... See my other blind change of this same kind!
 		transform.scale(p.scale);
 
 		// Ensure valid index -- if this fails, you have not called addTextureRect() enough times, or p.textureIndex is simply wrong

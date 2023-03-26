@@ -100,7 +100,7 @@ class THOR_API BigSprite : public sf::Drawable, public sf::Transformable
 	// Private member functions
 	private:
 		// Overrides sf::Drawable::draw()
-		virtual void				draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		void				draw(sf::RenderTarget& target, const sf::RenderStates& states) const override;
 
 
 	// ---------------------------------------------------------------------------------------------------------------------------

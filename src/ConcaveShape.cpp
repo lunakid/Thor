@@ -94,7 +94,7 @@ ConcaveShape::ConcaveShape()
 , mFillColor()
 , mOutlineColor()
 , mOutlineThickness(0.f)
-, mTriangleVertices(sf::Triangles)
+, mTriangleVertices(sf::PrimitiveType::Triangles)
 , mOutlineShapes()
 , mLocalBounds()
 , mNeedsDecomposition(false)
@@ -109,7 +109,7 @@ ConcaveShape::ConcaveShape(const sf::Shape& shape)
 , mFillColor(shape.getFillColor())
 , mOutlineColor(shape.getOutlineColor())
 , mOutlineThickness(shape.getOutlineThickness())
-, mTriangleVertices(sf::Triangles)
+, mTriangleVertices(sf::PrimitiveType::Triangles)
 , mOutlineShapes()
 , mLocalBounds()
 , mNeedsDecomposition(true)
@@ -184,7 +184,7 @@ float ConcaveShape::getOutlineThickness() const
 	return mOutlineThickness;
 }
 
-void ConcaveShape::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void ConcaveShape::draw(sf::RenderTarget& target, const sf::RenderStates& states) const
 {
 	// One or zero points aren't rendered
 	if (mPoints.size() <= 1)
@@ -195,12 +195,13 @@ void ConcaveShape::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	ensureOutlineUpdated();
 
 	// Combine transforms
-	states.transform *= getTransform();
+	auto lstates = states;
+	lstates.transform *= getTransform();
 
 	// Draw all triangles and the outline
-	target.draw(mTriangleVertices, states);
+	target.draw(mTriangleVertices, lstates);
 	AURORA_FOREACH(const sf::ConvexShape& shape, mOutlineShapes)
-		target.draw(shape, states);
+		target.draw(shape, lstates);
 }
 
 void ConcaveShape::ensureDecomposed() const

@@ -22,7 +22,7 @@ void onRun();
 int main()
 {
 	// Create and initialize window
-	sf::Window window(sf::VideoMode(400, 300), "Thor Action");
+	sf::Window window(sf::VideoMode({400, 300}), "Thor Action");
 	window.setFramerateLimit(20);
 	window.setKeyRepeatEnabled(false);
 

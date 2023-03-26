@@ -12,7 +12,7 @@ void addFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, fl
 	yLast += step; // so yLast is excluded in the range
 
 	for (int y = yFirst; y != yLast; y += step)
-		animation.addFrame(duration, sf::IntRect(36*x, 39*y, 36, 39));
+		animation.addFrame(duration, sf::IntRect{{36*x, 39*y}, {36, 39}});
 }
 
 // Plays an animation, and updates the text correspondingly
@@ -43,7 +43,7 @@ void playAnimation(thor::Animator<sf::Sprite, std::string>& animator, const std:
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(300, 200), "Thor Animation");
+	sf::RenderWindow window(sf::VideoMode({300, 200}), "Thor Animation");
 	window.setVerticalSyncEnabled(true);
 	window.setKeyRepeatEnabled(false);
 
@@ -61,7 +61,7 @@ int main()
 		font, 14u);
 
 	sf::Text animationText("(idle)", font, 14u);
-	animationText.setPosition(100.f, 150.f);
+	animationText.setPosition({100.f, 150.f});
 	animationText.setFillColor(sf::Color(250, 215, 11));
 
 	// Load image that contains animation steps
@@ -77,7 +77,7 @@ int main()
 
 	// Create sprite which is animated
 	sf::Sprite sprite(texture);
-	sprite.setPosition(100.f, 100.f);
+	sprite.setPosition({100.f, 100.f});
 
 	// Define walk animation
 	thor::FrameAnimation walk;

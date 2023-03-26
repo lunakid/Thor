@@ -30,7 +30,7 @@ int main()
 
 	// Create sf::Image to load one texture from
 	sf::Image image;
-	image.create(872, 100, sf::Color(130, 70, 0));
+	image.create({872, 100}, sf::Color(130, 70, 0));
 
 	// Load resources, store them in resource pointers and react to loading errors
 	try
@@ -53,10 +53,10 @@ int main()
 	sf::Text instructions("Press return to play sound, escape to quit", fonts["MainFont"], 14u);
 
 	// Move second sprite so that the sprites don't overlap
-	sprite2.move(0.f, sprite1.getGlobalBounds().height);
+	sprite2.move({0.f, sprite1.getGlobalBounds().height});
 
 	// Create render window
-	sf::RenderWindow window(sf::VideoMode(872, 370), "Thor Resources");
+	sf::RenderWindow window(sf::VideoMode({872, 370}), "Thor Resources");
 	window.setVerticalSyncEnabled(true);
 
 	for (;;)
@@ -76,7 +76,7 @@ int main()
 					case sf::Keyboard::Escape:
 						return 0;
 
-					case sf::Keyboard::Return:
+					case sf::Keyboard::Enter:
 						sound.play();
 						break;
 				}

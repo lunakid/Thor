@@ -139,7 +139,7 @@ namespace Resources
 	/// @param sampleRate Sample rate (number of samples to play per second).
 	/// @return Resource loader which is going to invoke <i>loadFromSamples(width, height, color)</i>.
 	template <class R>
-	ResourceLoader<R> fromSamples(const sf::Int16* samples, std::size_t sampleCount, unsigned int channelCount, unsigned int sampleRate)
+	ResourceLoader<R> fromSamples(const int16_t* samples, std::size_t sampleCount, unsigned int channelCount, unsigned int sampleRate)
 	{
 		return detail::makeResourceLoader<R>(
 			[=] (R& resource) { return resource.loadFromSamples(samples, sampleCount, channelCount, sampleRate); },
@@ -151,7 +151,7 @@ namespace Resources
 	/// @param pixels Pointer to the pixels in memory.
 	/// @return Resource loader which is going to invoke <i>create(width, height, pixels)</i>.
 	template <class R>
-	ResourceLoader<R> fromPixels(unsigned int width, unsigned int height, const sf::Uint8* pixels)
+	ResourceLoader<R> fromPixels(unsigned int width, unsigned int height, const uint8_t* pixels)
 	{
 		return detail::makeResourceLoader<R>(
 			[=] (R& resource) -> bool

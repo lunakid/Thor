@@ -124,7 +124,7 @@ class THOR_API ConcaveShape : public sf::Drawable, public sf::Transformable
 	// Private member functions
 	private:
 		// Renders the shape to target.
-		virtual void				draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		void				draw(sf::RenderTarget& target, const sf::RenderStates& states) const override;
 
 		// Computes how the shape can be split up into convex triangles.
 		void						ensureDecomposed() const;

@@ -35,7 +35,7 @@ void setColor(Particle& particle, const sf::Color& color)
 	particle.color = color;
 }
 
-void setAlpha(Particle& particle, sf::Uint8 alpha)
+void setAlpha(Particle& particle, uint8_t alpha)
 {
 	particle.color.a = alpha;
 }

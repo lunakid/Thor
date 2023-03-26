@@ -54,11 +54,11 @@ void THOR_API				setColor(Particle& particle, const sf::Color& color);
 /// @brief Sets the alpha color value of a graphical object.
 /// @details The object shall support the methods @a getColor() and @a setColor().
 template <typename T>
-void						setAlpha(T& object, sf::Uint8 alpha);
+void						setAlpha(T& object, uint8_t alpha);
 
 /// @brief Sets the alpha color value of a particle.
 ///
-void THOR_API				setAlpha(Particle& particle, sf::Uint8 alpha);
+void THOR_API				setAlpha(Particle& particle, uint8_t alpha);
 
 /// @}
 

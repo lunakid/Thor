@@ -17,7 +17,7 @@ std::string toString(sf::Time value)
 int main() 
 {
 	// Create SFML window
-	sf::RenderWindow window(sf::VideoMode(300, 200), "Thor Time", sf::Style::Close);
+	sf::RenderWindow window(sf::VideoMode({300, 200}), "Thor Time", sf::Style::Close);
 	window.setVerticalSyncEnabled(true);
 
 	// Create stopwatch and timer
@@ -41,13 +41,13 @@ int main()
 	sf::Text stopWatchMeasurement;
 	stopWatchMeasurement.setCharacterSize(20);
 	stopWatchMeasurement.setFont(font);
-	stopWatchMeasurement.setPosition(70.f, 120.f);
+	stopWatchMeasurement.setPosition({70.f, 120.f});
 	stopWatchMeasurement.setFillColor(sf::Color(0, 190, 140));
 	
 	sf::Text timerMeasurement;
 	timerMeasurement.setFont(font);
 	timerMeasurement.setCharacterSize(20);
-	timerMeasurement.setPosition(70.f, 150.f);
+	timerMeasurement.setPosition({70.f, 150.f});
 	timerMeasurement.setFillColor(sf::Color(0, 140, 190));
 	
 	// Connect timer with callback (colorize yellow) invoked at expiration time

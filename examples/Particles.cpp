@@ -8,7 +8,7 @@
 int main()
 {
 	// Create window
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Thor Particles");
+	sf::RenderWindow window(sf::VideoMode({800, 600}), "Thor Particles");
 	
 	// Load texture
 	sf::Texture texture;
@@ -83,8 +83,8 @@ int main()
 					break;
 
 				// Mouse wheel: Change emission direction
-				case sf::Event::MouseWheelMoved:
-					velocity.phi += 12.f * event.mouseWheel.delta;
+				case sf::Event::MouseWheelScrolled:
+					velocity.phi += 12.f * event.mouseWheelScroll.delta;
 					break;
 			}
 		}

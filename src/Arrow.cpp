@@ -123,7 +123,7 @@ void Arrow::adaptLine() const
 	{
 		mLine = Shapes::toConvexShape(sf::CircleShape(mThickness));
 		mLine.setFillColor(mColor);
-		mLine.move(-mThickness, -mThickness);
+		mLine.move(sf::Vector2f(-mThickness, -mThickness));
 	}
 
 	// If the line length is shorter than the triangle height, don't draw the line
@@ -156,7 +156,7 @@ void Arrow::adaptTriangle() const
 		const float begin = end - getTriangleHeight();
 
 		mTriangle.setFillColor(mColor);
-		mTriangle.setRotation(polarAngle(mDirection));
+		mTriangle.setRotation(sf::degrees(polarAngle(mDirection))); //!sz: at least the rest of the lib seems to use degrees, not radians...
 
 		mTriangle.setPointCount(3);
 		mTriangle.setPoint(0, sf::Vector2f(end, 0.f));
@@ -165,7 +165,7 @@ void Arrow::adaptTriangle() const
 	}
 }
 
-void Arrow::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void Arrow::draw(sf::RenderTarget& target, const sf::RenderStates& states) const
 {
 	if (mNeedsShapeUpdate)
 	{
@@ -174,10 +174,11 @@ void Arrow::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		mNeedsShapeUpdate = false;
 	}
 
-	states.transform *= getTransform();
+	auto lstates = states;
+	lstates.transform *= getTransform();
 
-	target.draw(mLine, states);
-	target.draw(mTriangle, states);
+	target.draw(mLine, lstates);
+	target.draw(mTriangle, lstates);
 }
 
 float Arrow::getZeroVectorTolerance()

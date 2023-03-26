@@ -32,7 +32,7 @@
 #include <Thor/Config.hpp>
 
 #include <SFML/System/Vector2.hpp>
-#include <SFML/System/NonCopyable.hpp>
+#include <_shim_/SFML/System/NonCopyable.hpp>
 
 #include <array>
 #include <cassert>

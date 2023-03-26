@@ -18,7 +18,7 @@ bool	handleEvents(sf::RenderWindow& window, VertexContainer& vertices, TriangleC
 int main()
 {
 	// Create render window
-	sf::RenderWindow window(sf::VideoMode(640, 480), "Thor Triangulation", sf::Style::Close);
+	sf::RenderWindow window(sf::VideoMode({640, 480}), "Thor Triangulation", sf::Style::Close);
 	window.setFramerateLimit(20);
 
 	// Create containers in which we store the vertices and the computed triangles

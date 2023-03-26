@@ -34,7 +34,7 @@
 #include <Thor/Input/Connection.hpp>
 #include <Thor/Config.hpp>
 
-#include <SFML/System/NonCopyable.hpp>
+#include <_shim_/SFML/System/NonCopyable.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Drawable.hpp>
@@ -198,7 +198,7 @@ class THOR_API ParticleSystem : public sf::Drawable, private sf::NonCopyable, pr
 		/// @brief Draws all particles in the system.
 		/// @param target The render target to which the particles are drawn.
 		/// @param states Current render states (shader, blend mode, ...)
-		virtual void				draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		void                        draw(sf::RenderTarget& target, const sf::RenderStates& states) const override;
 
 		/// @brief Emits a particle into the system.
 		/// @param particle Particle to emit.

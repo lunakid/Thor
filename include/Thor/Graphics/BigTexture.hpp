@@ -32,6 +32,7 @@
 #include <Thor/Config.hpp>
 
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Color.hpp>
 
 #include <vector>
 #include <string>

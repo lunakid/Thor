@@ -74,10 +74,10 @@ sf::Color blendColors(const sf::Color& firstColor, const sf::Color& secondColor,
 	float firstPart = 1.f - interpolation;
 
 	return sf::Color(
-		static_cast<sf::Uint8>(firstPart * firstColor.r + interpolation * secondColor.r),
-		static_cast<sf::Uint8>(firstPart * firstColor.g + interpolation * secondColor.g),
-		static_cast<sf::Uint8>(firstPart * firstColor.b + interpolation * secondColor.b),
-		static_cast<sf::Uint8>(firstPart * firstColor.a + interpolation * secondColor.a));
+		static_cast<uint8_t>(firstPart * firstColor.r + interpolation * secondColor.r),
+		static_cast<uint8_t>(firstPart * firstColor.g + interpolation * secondColor.g),
+		static_cast<uint8_t>(firstPart * firstColor.b + interpolation * secondColor.b),
+		static_cast<uint8_t>(firstPart * firstColor.a + interpolation * secondColor.a));
 }
 
 } // namespace thor

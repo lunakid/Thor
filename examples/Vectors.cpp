@@ -26,7 +26,7 @@ enum VectorType
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Thor Vectors", sf::Style::Close);
+	sf::RenderWindow window(sf::VideoMode({800, 600}), "Thor Vectors", sf::Style::Close);
 	window.setFramerateLimit(20);
 
 	// Persistent vectors and scalars
@@ -66,7 +66,7 @@ int main()
 		texts[i].setFillColor(colors[i]);
 		texts[i].setCharacterSize(14u);
 		texts[i].setFont(font);
-		texts[i].setPosition(0.f, 16.f * i);
+		texts[i].setPosition({0.f, 16.f * i});
 
 		arrows[i].setColor(colors[i]);
 		arrows[i].setPosition(sf::Vector2f(window.getSize() / 2u));
