@@ -19,9 +19,9 @@ _Jan Haller's lib has been archived. This is a copy kept alive against the still
 
 ### TODO:
 
-- The Fireworks & Particles examples fail to draw anything (probably due to something being off in ParticleSystem)
 - Makefile for GCC!
 
+_The original (upstream) README:_
 
 -------------------------------------------------------------------------------------------------    
     

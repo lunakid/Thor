@@ -31,12 +31,12 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Image.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/PrimitiveType.hpp>
 
 #include <algorithm>
 #include <array>
 #include <cmath>
 #include <cassert>
-
 
 namespace thor
 {
@@ -71,7 +71,8 @@ ParticleSystem::ParticleSystem()
 , mEmitters()
 , mTexture(nullptr)
 , mTextureRects()
-, mVertices() //!!?? (sf::Quads)   // also: Quads have been removed from SFML
+, mVertices(sf::PrimitiveType::TriangleStrip) //!! This is not a replacement for the deprecated sf::Quads, but
+                                              //!! at least allows rendering *something*, while transitioning.
 , mNeedsVertexUpdate(true)
 , mQuads()
 , mNeedsQuadUpdate(true)
@@ -247,7 +248,7 @@ void ParticleSystem::computeVertices() const
 	{
 		sf::Transform transform;
 		transform.translate(p.position);
-		transform.rotate(sf::degrees(p.rotation)); //!!?? Or radians()?... See my other blind change of this same kind!
+		transform.rotate(sf::degrees(p.rotation));
 		transform.scale(p.scale);
 
 		// Ensure valid index -- if this fails, you have not called addTextureRect() enough times, or p.textureIndex is simply wrong
